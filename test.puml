@@ -1,0 +1,24 @@
+@startuml Allocation Context Diagram
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+scale 2
+
+System(systema, "Allocation", "Распределяет запасы по заказам клиентов")
+
+Person(customer, "Customer", "Хочет купить мебель")
+Person(buyer, "Buying Team", "Формирует заявку на закупку мебели у поставщиков")
+
+System(procurement, "Совершает закупку")
+, "Управляет рабочим процессом покупки запасов у поставщиков")
+System(ecom, "Ecommerce", "Продает товары онлайн")
+System(warehouse, "Warehouse", "Управляет рабочим процессом доставки товаров покупателям")
+
+Rel(buyer, procurement, "Использует")
+Rel(procurement, systema, "Notifies about shipments (Уведомляет о доставке)")
+Rel(customer, ecom, "Buys from (Покупает у)")
+Rel(ecom, systema, "Asks for stock levels (Запрашивает уровень запасов)")
+Rel(ecom, systema, "Notifies about orders (Уведомляет о заказах)")
+Rel_R(systema, warehouse, "Sends instructions to (Отправляет инструкции)")
+Rel_U(warehouse, customer, "Dispatches goods to (Отправляет товар в)")
+
+@enduml

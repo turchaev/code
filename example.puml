@@ -1,0 +1,43 @@
+[plantuml, apwp_0102]
+@startuml test
+autonumber
+
+skinparam ResponseMessageBelowArrow true
+header Page Header
+footer Page %page% of %lastpage%
+title тестовый пример UML
+
+
+Nray -> Ann : Привет
+Ann -> Nray : Хорошо
+
+actor Foo1 #red
+boundary Foo2
+control Foo3
+entity Foo4
+database Foo5
+collections Foo6
+Foo1 -> Foo2 : To boundary
+Foo1 -> Foo3 : To control
+Foo1 -> Foo4 : To entity
+Foo1 -> Foo5 : To database
+Foo1 -> Foo6 : To collections
+
+
+actor Bob #red
+' The only difference between actor
+'and participant is the drawing
+participant Alice
+participant "I have a really\nlong name" as L #99FF99
+/' You can also declare:
+participant L as "I have a really\nlong name" #99FF99
+'/
+Alice->Bob: Authentication Request
+Bob->Alice: Authentication Response
+Bob->L: Log transaction
+
+participant Last order 30
+participant Middle order 20
+participant First order 10
+@enduml
+
